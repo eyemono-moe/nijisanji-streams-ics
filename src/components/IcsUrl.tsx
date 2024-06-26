@@ -1,4 +1,4 @@
-import { type Component, createEffect } from "solid-js";
+import { type Component, createEffect, createSignal, onMount } from "solid-js";
 import { useLivers } from "~/context/liversProvider";
 import { copyToClipboard } from "~/lib/copyToClipboard";
 
@@ -10,7 +10,7 @@ const { compressToEncodedURIComponent } = pkg;
 const IcsUrl: Component = () => {
 	const { state } = useLivers();
 
-	const url = () => {
+	const createUrl = () => {
 		const selectedLivers = Object.entries(state.selected)
 			.filter((e) => e[1])
 			.map((e) => e[0]);
@@ -24,9 +24,15 @@ const IcsUrl: Component = () => {
 				livers,
 			});
 
-		if (isServer) return "http://localhost:3000/api/ics?livers=NoXSA";
+		if (isServer) return "";
 		return `${location.protocol}//${location.host}/api/ics?${params()}`;
 	};
+
+	const [url, setUrl] = createSignal("");
+
+	createEffect(() => {
+		setUrl(createUrl());
+	});
 
 	return (
 		<div class="flex items-center w-full p-2 bg-zinc-100 rounded-2 gap-2">

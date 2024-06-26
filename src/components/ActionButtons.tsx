@@ -8,6 +8,9 @@ const ActionButtons: Component = () => {
 		actions: { selectAll, reset },
 	} = useLivers();
 
+	const selectedCount = () =>
+		Object.entries(state.selected).filter((s) => s[1]).length;
+
 	return (
 		<div class="flex gap-2 items-center">
 			<Button
@@ -24,9 +27,7 @@ const ActionButtons: Component = () => {
 			>
 				全選択解除
 			</Button>
-			<div>
-				{Object.entries(state.selected).filter((s) => s[1]).length}人選択中
-			</div>
+			<div>{selectedCount()}人選択中</div>
 		</div>
 	);
 };
