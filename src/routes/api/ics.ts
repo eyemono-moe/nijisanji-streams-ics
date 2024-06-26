@@ -31,8 +31,7 @@ export const GET = async (event: APIEvent) => {
 	const ics = createIcs(streams);
 	return new Response(ics, {
 		headers: {
-			"Content-Type": "text/plain; charset=utf-8",
-			// "Content-Type": "text/calendar; charset=utf-8"
+			"Content-Type": "text/calendar; charset=utf-8",
 		},
 	});
 };
