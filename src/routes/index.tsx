@@ -1,44 +1,42 @@
-import { A } from "@solidjs/router";
-import Counter from "~/components/Counter";
+import { type RouteDefinition, cache, createAsync } from "@solidjs/router";
+import { type Component, For } from "solid-js";
+import ActionButtons from "~/components/ActionButtons";
+import IcsUrl from "~/components/IcsUrl";
+import Liver from "~/components/Liver";
+import { getLivers } from "~/lib/getLivers";
 
-export default function Home() {
-  return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-        <div class="flex justify-center items-center">
-          <span class="mr-5">Hello</span> <img class="w-12 h-12" src="https://unocss.dev/logo.svg" alt="UnoCSS logo" />!
-        </div>
-      </h1>
-      <Counter />
-      <p class="mt-8">
-        Visit{" "}
-        <a
-          href="https://solidjs.com"
-          target="_blank"
-          class="text-sky-600 hover:underline"
-        >
-          solidjs.com
-        </a>{" "}
-        to learn how to build Solid apps.
-      </p>
-      <p class="mt-2">
-        Visit{" "}
-        <a
-          href="https://unocss.dev"
-          target="_blank"
-          class="text-sky-600 hover:underline"
-        >
-          unocss.dev
-        </a>{" "}
-        to learn how to style your app.
-      </p>
-      <p class="my-4">
-        <span>Home</span>
-        {" - "}
-        <A href="/about" class="text-sky-600 hover:underline">
-          About Page
-        </A>{" "}
-      </p>
-    </main>
-  );
-}
+const getLiversCache = cache(() => {
+	"use server";
+	return getLivers();
+}, "users");
+
+export const route = {
+	load: () => getLiversCache(),
+} satisfies RouteDefinition;
+
+const index: Component = () => {
+	const livers = createAsync(() => getLiversCache());
+
+	return (
+		<main class="prose prose-zinc max-w-unset flex flex-col items-stretch gap-4">
+			<div class="sticky top-0 z-1">
+				<div class="flex flex-col max-w-1000px px-4 mx-auto bg-white gap-2">
+					<h1>にじさんじ Streams ics</h1>
+					<p>
+						ライバーの配信予定のカレンダーファイルを生成します。好きなライバーを選択し、以下のURLをお使いのカレンダーアプリにインポートしてください。
+					</p>
+					<IcsUrl />
+					<ActionButtons />
+				</div>
+				<div class="w-full h-4 bg-gradient-from-white bg-gradient-to-transparent bg-gradient-to-b bg-grad" />
+			</div>
+			<div class="w-full max-w-1000px px-4 mx-auto relative">
+				<div class="grid md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4 pb-6">
+					<For each={livers()}>{(liver) => <Liver liver={liver} />}</For>
+				</div>
+			</div>
+		</main>
+	);
+};
+
+export default index;
