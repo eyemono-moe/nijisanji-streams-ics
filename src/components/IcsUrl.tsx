@@ -46,7 +46,7 @@ const IcsUrl: Component = () => {
 				onClick={() => {
 					copyToClipboard(url());
 				}}
-				class="shrink-0 bg-zinc-300 font-bold p-1 rounded"
+				class="shrink-0 font-bold p-1 rounded bg-zinc-3 hover:(bg-zinc-4) active:(bg-zinc-5) transition-color"
 				title="copy to clipboard"
 			>
 				<div class="i-material-symbols:content-copy-outline-rounded w-6 h-6" />

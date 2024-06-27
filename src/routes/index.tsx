@@ -21,9 +21,9 @@ const index: Component = () => {
 		<main class="prose prose-zinc max-w-unset flex flex-col items-stretch gap-4">
 			<div class="sticky top-0 z-1">
 				<div class="flex flex-col max-w-1000px px-4 mx-auto bg-white gap-2">
-					<h1>にじさんじ Streams ics</h1>
+					<h1>にじさんじ Streams iCal</h1>
 					<p>
-						ライバーの配信予定のカレンダーファイルを生成します。好きなライバーを選択し、以下のURLをお使いのカレンダーアプリにインポートしてください。
+						ライバーの配信予定のカレンダーファイル(iCal形式)を生成します。好きなライバーを選択し、以下のURLをお使いのカレンダーアプリにインポートしてください。
 					</p>
 					<IcsUrl />
 					<ActionButtons />
