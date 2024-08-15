@@ -21,10 +21,23 @@ const index: Component = () => {
 		<main class="prose prose-zinc max-w-unset flex flex-col items-stretch gap-4">
 			<div class="sticky top-0 z-1">
 				<div class="flex flex-col max-w-1000px px-4 mx-auto bg-white gap-2">
-					<h1>にじさんじ Streams iCal</h1>
-					<p>
-						ライバーの配信予定のカレンダーファイル(iCal形式)を生成します。好きなライバーを選択し、以下のURLをお使いのカレンダーアプリにインポートしてください。
-					</p>
+					<div>
+						<h1>にじさんじ Streams iCal</h1>
+						<p>
+							ライバーの配信予定のカレンダーファイル(iCal形式)を生成します。好きなライバーを選択し、以下のURLをお使いのカレンダーアプリにインポートしてください。
+						</p>
+						<p>
+							配信情報は
+							<a
+								target="_blank"
+								rel="noopener noreferrer"
+								href="https://www.nijisanji.jp/streams"
+							>
+								にじさんじ公式ライブスケジュール
+							</a>
+							から取得しています。
+						</p>
+					</div>
 					<IcsUrl />
 					<ActionButtons />
 				</div>
