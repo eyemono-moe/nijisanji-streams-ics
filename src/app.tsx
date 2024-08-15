@@ -8,20 +8,20 @@ import { LiversProvider } from "./context/liversProvider";
 import { Toaster } from "./lib/toast";
 
 export default function App() {
-	return (
-		<Router
-			root={(props) => (
-				<>
-					<LiversProvider>
-						<div class="font-sans">
-							<Suspense>{props.children}</Suspense>
-						</div>
-					</LiversProvider>
-					<Toaster />
-				</>
-			)}
-		>
-			<FileRoutes />
-		</Router>
-	);
+  return (
+    <Router
+      root={(props) => (
+        <>
+          <LiversProvider>
+            <div class="font-sans">
+              <Suspense>{props.children}</Suspense>
+            </div>
+          </LiversProvider>
+          <Toaster />
+        </>
+      )}
+    >
+      <FileRoutes />
+    </Router>
+  );
 }
