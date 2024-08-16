@@ -31,7 +31,7 @@ export const createIcs = async (selectedLivers: string[] = []) => {
         end: dateToDateArray(s.attributes.end_at),
         title: s.attributes.title,
         uid: s.id,
-        description: `by ${livers}, at {s.attributes.url}`,
+        description: `by ${livers}, at ${s.attributes.url}`,
         url: s.attributes.url,
         // organizer: {
         // 	name: s.channel.attributes.name,
