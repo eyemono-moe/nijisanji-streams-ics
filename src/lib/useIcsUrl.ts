@@ -5,6 +5,7 @@ import { useLivers } from "~/context/liversProvider";
 const { compressToEncodedURIComponent } = pkg;
 
 export const useIcsUrl = () => {
+  if (isServer) return () => `${process.env.BASE_URL}/api/ics`;
   const { state } = useLivers();
 
   const selectedLivers = () =>
@@ -20,6 +21,5 @@ export const useIcsUrl = () => {
       livers: livers(),
     });
 
-  if (isServer) return () => "http://localhost:3000/api/ics?livers=NoXSA";
   return () => `${location.protocol}//${location.host}/api/ics?${params()}`;
 };
