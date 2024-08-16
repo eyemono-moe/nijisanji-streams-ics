@@ -2,6 +2,8 @@ import * as v from "valibot";
 import { livers } from "~/schema/livers";
 
 export const getLivers = async () => {
+  "use server";
+
   const getLiver = fetch(
     "https://www.nijisanji.jp/api/livers?limit=999&orderKey=name&affiliation=nijisanji&locale=ja&includeAll=true",
     {
