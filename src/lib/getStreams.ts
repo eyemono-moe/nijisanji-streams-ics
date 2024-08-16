@@ -68,6 +68,7 @@ const mergeStreams = (streams: Streams[]) => {
       attributes: Streams["data"][number]["attributes"];
       channel: IncludedChannel;
       liver: IncludedLiver;
+      collaborationLivers: IncludedLiver[];
     }[]
   >((prev, current) => {
     const channelId = current.relationships.youtube_channel.data.id;
@@ -78,11 +79,16 @@ const mergeStreams = (streams: Streams[]) => {
     const liver = liverMap.get(liverId);
     if (!liver) throw new Error("liver not found");
 
+    const collaborationLivers = current.relationships.youtube_events_livers.data
+      .map((l) => liverMap.get(l.id))
+      .filter((l): l is Exclude<typeof l, undefined> => l !== undefined);
+
     prev.push({
       id: current.id,
       attributes: current.attributes,
       channel,
       liver,
+      collaborationLivers,
     });
     return prev;
   }, []);

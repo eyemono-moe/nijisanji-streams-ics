@@ -2,7 +2,6 @@ import type { APIEvent } from "@solidjs/start/server";
 import pkg from "lz-string";
 import * as v from "valibot";
 import { createIcs } from "~/lib/createIcs";
-import { getStreams } from "~/lib/getStreams";
 import { useQuery } from "~/lib/useQuery";
 
 const { decompressFromEncodedURIComponent } = pkg;
@@ -16,19 +15,16 @@ const liversSchema = v.array(v.string());
 export const GET = async (event: APIEvent) => {
   const parsedParams = useQuery(schema, event.nativeEvent);
 
-  let livers: string[] | undefined = undefined;
+  let selectedLivers: string[] | undefined = undefined;
   if (parsedParams.livers) {
-    livers = v.parse(
+    selectedLivers = v.parse(
       liversSchema,
       JSON.parse(decompressFromEncodedURIComponent(parsedParams.livers)),
     );
-    livers = livers.length > 0 ? livers : undefined;
+    selectedLivers = selectedLivers.length > 0 ? selectedLivers : undefined;
   }
 
-  const streams = await getStreams({
-    livers,
-  });
-  const ics = createIcs(streams);
+  const ics = await createIcs(selectedLivers);
   return new Response(ics, {
     headers: {
       "Content-Type": "text/calendar; charset=utf-8",

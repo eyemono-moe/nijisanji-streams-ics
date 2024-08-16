@@ -35,8 +35,18 @@ const youtubeChannel = v.object({
   }),
 });
 
+const youtubeEventLivers = v.object({
+  data: v.array(
+    v.object({
+      id: v.string(),
+      type: v.literal("liver"),
+    }),
+  ),
+});
+
 const relationships = v.object({
   youtube_channel: youtubeChannel,
+  youtube_events_livers: youtubeEventLivers,
 });
 
 const data = v.object({

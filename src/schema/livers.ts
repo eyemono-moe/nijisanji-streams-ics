@@ -10,6 +10,7 @@ const image = v.object({
 const liver = v.object({
   name: v.string(),
   id: v.string(),
+  hidden: v.boolean(),
   images: v.object({
     head: image,
   }),
