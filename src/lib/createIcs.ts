@@ -4,6 +4,7 @@ import type { getStreams } from "./getStreams";
 export const createIcs = (streams: Awaited<ReturnType<typeof getStreams>>) => {
   const events = convertStreamsToEvents(streams);
   const { value } = ics.createEvents(events, {
+    productId: "-//eyemono.moe//NONSGML nijsanji-ics//JA",
     calName: "にじさんじ Live Streams",
   });
   if (!value) throw new Error("failed to create ics events");
