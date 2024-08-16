@@ -29,8 +29,11 @@ export const getLivers = async () => {
     .then((j) => parseLivers(j));
 
   const [livers, liversEn] = await Promise.all([getLiver, getLiverEn]);
+  const allLivers = [...livers, ...liversEn];
 
-  return [...livers, ...liversEn];
+  allLivers.sort((a, b) => (a.hidden ? (b.hidden ? 0 : -1) : b.hidden ? 1 : 0));
+
+  return allLivers;
 };
 
 const parseLivers = (res: unknown) => {
