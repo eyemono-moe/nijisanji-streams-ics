@@ -31,8 +31,6 @@ export const getLivers = async () => {
   const [livers, liversEn] = await Promise.all([getLiver, getLiverEn]);
   const allLivers = [...livers, ...liversEn];
 
-  allLivers.sort((a, b) => (a.hidden ? (b.hidden ? 0 : -1) : b.hidden ? 1 : 0));
-
   return allLivers;
 };
 
@@ -40,5 +38,5 @@ const parseLivers = (res: unknown) => {
   const { issues, output, success } = v.safeParse(livers, res);
   if (success) return output;
   console.error(issues);
-  throw new Error("failed to parse livers");
+  return [];
 };

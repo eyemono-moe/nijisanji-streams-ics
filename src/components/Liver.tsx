@@ -1,5 +1,6 @@
 import { type Component, Show } from "solid-js";
 import { useLivers } from "~/context/liversProvider";
+import { randomColor } from "~/lib/color";
 import type { Livers } from "~/schema/livers";
 
 type Props = {
@@ -19,13 +20,12 @@ const Liver: Component<Props> = (props) => {
 
   return (
     <button
-      class="relative bg-gradient-to-rb bg-gradient-from-white bg-gradient-to-white flex flex-col items-center gap-2 rounded-4 md:p-4 p-1 hover:(scale-105) transition-transform"
+      class="relative flex flex-col items-center gap-2 rounded-4 md:p-4 p-1 hover:(scale-105) transition-transform"
       classList={{
         "outline outline-lime-500": selected(),
       }}
       style={{
-        "--un-gradient-from": props.liver.siteColor.color1,
-        "--un-gradient-to": props.liver.siteColor.color2,
+        "background-color": randomColor(props.liver.name),
       }}
       onClick={() => {
         toggleSelected();
