@@ -15,7 +15,7 @@ const liversSchema = v.array(v.string());
 export const GET = async (event: APIEvent) => {
   const parsedParams = useQuery(schema, event.nativeEvent);
 
-  let selectedLivers: string[] | undefined = undefined;
+  let selectedLivers: string[] | undefined;
   if (parsedParams.livers) {
     selectedLivers = v.parse(
       liversSchema,

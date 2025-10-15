@@ -1,5 +1,5 @@
 import * as v from "valibot";
-import { type HTTPEvent, getQuery } from "vinxi/http";
+import { getQuery, type HTTPEvent } from "vinxi/http";
 
 export const useQuery = <
   TEntries extends v.ObjectEntries,

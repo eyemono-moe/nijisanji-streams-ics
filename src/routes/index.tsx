@@ -1,4 +1,4 @@
-import { type RouteDefinition, cache, createAsync } from "@solidjs/router";
+import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
 import { type Component, For } from "solid-js";
 import ActionButtons from "~/components/ActionButtons";
 import IcsUrl from "~/components/IcsUrl";

@@ -1,8 +1,8 @@
 import { Button as CButton } from "@kobalte/core/button";
 import {
   type ComponentProps,
-  type ParentComponent,
   mergeProps,
+  type ParentComponent,
   splitProps,
 } from "solid-js";
 

@@ -1,7 +1,14 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "files": {
-    "ignore": ["tsconfig.json", "tsconfig.*.json"]
+    "includes": ["**", "!**/tsconfig.json", "!**/tsconfig.*.json"]
   },
   "formatter": {
     "indentStyle": "space"
@@ -14,9 +21,6 @@
       },
       "recommended": true
     }
-  },
-  "organizeImports": {
-    "enabled": true
   },
   "vcs": {
     "clientKind": "git",
